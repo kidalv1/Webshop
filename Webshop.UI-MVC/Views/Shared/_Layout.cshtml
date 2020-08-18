@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - dotNet Academy Webshop</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="icon" href="https://www.dotnetacademy.be/wp-content/themes/dotnetacademy/assets/images/compressed/favicon.ico">
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <li class="active">@Html.ActionLink("Webshop", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})<li/>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Opleidingen", "Index", "Product", new {area = ""}, new {@class = "navbar-brand"})</li>
+                <li>@Html.ActionLink("Cursussen", "Index", "Course", new {area = ""}, new {@class = "navbar-brand"})</li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="" data-toggle="dropdown" href="#">
+                            Administratie
+                            <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            @Html.ActionLink("Nieuwe gebruiker", "RegisterUser", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Rollen beheren", "Index", "Role", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Alle gebruikers", "Index", "User", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Producten Rapport", "Index", "ProductReport", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Facturen Rapport", "Index", "Invoice", new { area = "" }, new { @class = "navbar-brand" })
+                            <br />
+                        </div>
+                    </li>
+                }
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @if (!User.IsInRole("Admin"))
+                {
+                    <li>
+                        <a href="@Url.Action("Index", "ShoppingCart")">
+                            <img src="../../shopping-cart(1).svg" alt="SHopping cart" width="25" height="25"><span class='badge badge-warning' id='lblCartCount'>@Session["count"]</span>
+                        </a>
+                    </li>
+                }
+                <li>@Html.Partial("_LoginPartial")</li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+<div class="container body-content">
+    @RenderBody()
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - dotNet Academy Webshop</p>
+    </footer>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+</body>
+</html>

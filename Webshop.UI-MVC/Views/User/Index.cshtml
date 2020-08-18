@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Webshop.UI_MVC.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Alle gebruikers</h2>
+
+<p>
+    @Html.ActionLink("Maak nieuwe gebruiker", "RegisterUser", "Account")
+</p>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="10">Geen gebruikers gevonden.</td>
+            </tr>
+        }
+        else
+        {
+            <thead colspan="3">
+            <tr class="active">
+                <th data-defaultsign="_19">Gebruikers</th>
+            </tr>
+            </thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Achternaam")
+                </th>
+                <th>
+                    @Html.DisplayName("Voornaam")
+                </th>
+                <th>
+                    @Html.DisplayName("Adres")
+                </th>
+                <th>
+                    @Html.DisplayName("Postcode")
+                </th>
+                <th>
+                    @Html.DisplayName("Email")
+                </th>
+                <th>
+                    @Html.DisplayName("Email Bevestigd")
+                </th>
+
+                <th></th>
+            </tr>
+
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Firstname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ZIPCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailConfirmed)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Wijzig", "Edit", new {id = item.Id}) |
+                        @Html.ActionLink("Details", "DetailsOtherUser", new {id = item.Id}) |
+                        @Html.ActionLink("Verwijder", "Delete", new {id = item.Id})
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>

@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "Home Pagina";
+}
+
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/modern-business.css" rel="stylesheet">
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+ 
+    <div class="carousel-inner" role="listbox">
+        <!-- Slide One - Set the background image for this slide in the line below -->
+        <div class="carousel-item active" style="background-image: url('https://uploads.toptal.io/blog/image/125395/toptal-blog-image-1518187252525-03f6db7b1c131066061024c236c7e3ff.png')">
+            <div class="carousel-caption d-none d-md-block">
+            </div>
+        </div>
+        <!-- Slide Two - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('https://miro.medium.com/max/3600/1*n7V4Kv9IKpf_UQfxsMsmEA.jpeg')">
+            <div class="carousel-caption d-none d-md-block">
+                
+            </div>
+        </div>
+        <!-- Slide Three - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('https://inteng-storage.s3.amazonaws.com/img/iea/V0OyRqxYGQ/sizes/ctraining_resize_md.jpg')">
+            <div class="carousel-caption d-none d-md-block">
+                
+            </div>
+        </div>
+        <div class="carousel-item" style="background-image: url('https://miro.medium.com/max/3652/1*MCiNLBzUI-LWK_PhVwq0xA.png')">
+            <div class="carousel-caption d-none d-md-block">
+               
+            </div>
+        </div>
+        <div class="carousel-item" style="background-image: url('https://miro.medium.com/max/1745/1*Ht8T-vqbqy5iG7FzNQGjFA.png')">
+            <div class="carousel-caption d-none d-md-block">
+               
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<!-- /.row -->
+<!-- Portfolio Section -->
+<p></p>
+<h1>Welkom bij dotNet Academy Webshop</h1>
+<p></p>
+
+    <div class="row">
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                <a href="@Url.Action("Index","Course")"><img class="card-img-top" src="https://i.udemycdn.com/course/750x422/177912_a7c8_6.jpg" alt=""></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        @Html.ActionLink("Angular", "Index", "Course", new { area = "" }, new { @class = "card-title" })
+                    </h4>
+                    <p class="card-text">AngularJS, nieuwste versie heet Angular, is een open source webapplicatieframework dat wordt onderhouden door Google en een collectief van individuele ontwikkelaars en bedrijven die bezig zijn de mogelijkheden voor het ontwikkelen van Single Page Applications (SPA) te verbeteren.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                <a href="@Url.Action("Index","Course")"><img class="card-img-top" src="https://codersera.com/blog/wp-content/uploads/2019/06/React_illo_final_720x400.png" alt=""></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        @Html.ActionLink("React", "Index", "Course", new { area = "" }, new { @class = "card-title" })
+                    </h4>
+                    <p class="card-text">React (ook wel React.js of ReactJS genoemd) is een Javascriptbibliotheek om gebruikersinterfaces mee te bouwen.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                <a href="@Url.Action("Index","Course")"><img class="card-img-top" src="https://cdn.educba.com/academy/wp-content/uploads/2019/05/What-is-Sass.jpg" alt=""></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        @Html.ActionLink("Sass", "Index", "Course", new { area = "" }, new { @class = "card-title" })
+                    </h4>
+                    <p class="card-text">Sass (Syntactically Awesome StyleSheets) is een scripttaal die CSS uitbreidt. Dit geeft developers de mogelijkheid om code te schrijven in de ene taal en deze vervolgens te compileren (samenvoegen) naar CSS. Sass stelt je in staat om functies te gebruiken zoals variabelen, geneste regels, inline importeren en nog veel meer. Het helpt ook om dingen georganiseerd te houden waardoor je stylesheets sneller kan maken. Een aantal functies zullen hieronder worden uitgelegd.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                <a href="@Url.Action("Index","Course")"><img class="card-img-top" src="https://i2.wp.com/blog.logrocket.com/wp-content/uploads/2019/09/Vue-stateless-components.png" alt=""></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        @Html.ActionLink("Vue", "Index", "Course", new {area = ""}, new {@class = "card-title"})
+                    </h4>
+                    <p class="card-text">Vue is een JavaScript front-end framework, wat zoveel betekent als dat het de tools biedt om de voorkant van de webapplicatie - dat wat de gebruiker ziet - te optimaliseren. Als de gebruiker op zoek is naar de perfecte telefoon, dan wil je dat diezelfde gebruiker door middel van het aanvinken van enkele hokjes direct verschillende telefoons kan vergelijken. Met andere woorden: als de gebruiker iets doet, dan wil je dat je applicatie daar meteen op reageert. Zonder laadtijd. Dat regelen we met Vue.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                <a href="@Url.Action("Index","Course")"><img class="card-img-top" src="https://miro.medium.com/max/2400/1*d_w0M8RoJdXy4l84fsePhg.jpeg" height="200" alt=""></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        @Html.ActionLink("Ionic", "Index", "Course", new {area = ""}, new {@class = "card-title"})
+                    </h4>
+                    <p class="card-text">Ionic Framework is een open source UI-toolkit voor het bouwen van hoogwaardige, hoogwaardige mobiele en desktop-apps met webtechnologieën (HTML, CSS en JavaScript).
+                        Ionic Framework is gericht op de frontend-gebruikerservaring of UI-interactie van een app (bedieningselementen, interacties, gebaren, animaties). Het is gemakkelijk te leren en integreert mooi met andere bibliotheken of frameworks, zoals Angular, of kan op zichzelf worden gebruikt zonder een frontend framework met behulp van een eenvoudig script.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                 <a href="@Url.Action("Index","Course")"><img class="card-img-top" src="https://www.ingeniumweb.com/in/images/aspnet-mvc-framework-overview/2433.png" height="200" alt=""></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        @Html.ActionLink("MVC", "Index", "Course", new {area = ""}, new {@class = "card-title"})
+
+                    </h4>
+                    <p class="card-text">Het ASP.NET MVC Framework is een Web Application Framework voor .NET. Hoewel het gebaseerd is op ASP.NET verschilt de architectuur toch sterk. Webapplicaties worden opgezet met het model-view-controller-model.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+

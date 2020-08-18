@@ -1,0 +1,59 @@
+﻿@using Webshop.UI_MVC.Models.Webshop
+@model IEnumerable<Webshop.UI_MVC.Models.Webshop.ShoppingCart>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Item
+        </th>
+        <th>
+            @Html.DisplayName("Aantal")
+        </th>
+        <th>
+            Prijs
+        </th>
+    </tr>
+
+    @foreach (ShoppingCart item in Model)
+    {
+        <tr>
+            @if (item.Course == null)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Price)
+                </td>
+            }
+            @if (item.Product == null)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Price)
+                </td>
+            }
+        </tr>
+    }
+    <tr>
+        <th>Totaal te betalen:</th>
+        <th>€ @ViewBag.total</th>
+    </tr>
+</table>
+<p>
+    @Html.ActionLink("Terug naar lijst", "Index")
+</p>

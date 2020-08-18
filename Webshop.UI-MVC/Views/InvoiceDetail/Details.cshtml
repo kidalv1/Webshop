@@ -1,0 +1,26 @@
+﻿@model Webshop.UI_MVC.Models.Webshop.InvoiceDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Factuur Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pieces)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pieces)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Terug naar lijst", "Index")
+</p>

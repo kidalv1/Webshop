@@ -1,0 +1,34 @@
+﻿@model Webshop.UI_MVC.Models.IndexViewModel
+@{
+    ViewBag.Title = "Beheer";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Verander uw account settings</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Wachtwoord:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Verander uw wachtwoord", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Aanmaken", "SetPassword")
+            }
+            ]
+        </dd>
+        @if (!User.IsInRole("Admin"))
+        {
+            <dt>Bekijk uw account details:</dt>
+            <dd>@Html.ActionLink("Account Details", "Details", "User")</dd>
+            <dt>Bekijk uw bestellingen:</dt>
+            <dd>@Html.ActionLink("Mijn bestellingen", "Index", "MyOrder")</dd>
+        }
+    </dl>
+</div>

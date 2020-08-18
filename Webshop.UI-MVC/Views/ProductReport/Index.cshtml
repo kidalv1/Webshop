@@ -1,0 +1,58 @@
+@using Syncfusion.XPS
+@model IEnumerable<Webshop.UI_MVC.Models.Webshop.Product>
+
+@{
+    ViewBag.Title = "Rapport van producten";
+    int i = 0;
+}
+
+
+@using (Html.BeginForm())
+{
+    <div>
+      <div class="object">
+        <h2 class="objectTitle">Producten</h2>
+        <div class="objectInput">
+          @Html.TextBox("SearchString")
+          <button title="Zoeken" input="submit" style="background-color: transparent; border: none"><img src="../../magnifying-glass.svg" width="20" height="20" /></button>
+          </div>
+        </div>
+      </div>
+}
+@if (!Model.Any())
+{
+    <p>Er zijn nog geen producten.</p>
+}
+else
+{
+    <p>
+        @Html.ActionLink("Klik hier om een product te wijzigen/verwijderen", "Index", "Product")
+    </p>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Aantal Dagen</th>
+                <th>Startdatum</th>
+                <th>Einddatum</th>
+                <th>Prijs</th>
+                <th>Aantal Verkocht</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Duration</td>
+                    <td>@product.StartDate.ToShortDateString()</td>
+                    <td>@product.EndDate.ToShortDateString()</td>
+                    <td>@product.Price</td>
+                    <td>@ViewBag.aantalList[i]</td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+}

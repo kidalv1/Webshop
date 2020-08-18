@@ -1,0 +1,53 @@
+﻿@model Webshop.UI_MVC.Models.Webshop.Product
+
+@{
+    ViewBag.Title = "Details";
+    var count = 0;
+}
+
+<h2>Cursussen</h2>
+
+<div class="card-deck">
+<div class="row">
+    @foreach (var item in Model.Courses)
+    {
+        var insertRow = count != 0 && count % 6 == 0;
+        if (insertRow)
+        {
+            @:</div>
+            @:<div class="row">
+        }
+
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="https://fossbytes.com/wp-content/uploads/2017/03/loved-hated-programming-languages-640x360.jpg" class="card-img-top" alt="corgi" width="350" height="200">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-weight: bold">@Html.DisplayFor(modelItem => item.Name)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Price) EUR</p>
+                    @if (!User.IsInRole("Admin"))
+                    {
+                        <a href="@Url.Action("Buy", "ShoppingCart" , new {id=item.Id, getBool=false})" class="btn btn-primary">
+                            <img src="../../shopping-cart(1).svg" width="25" height="25" /> &nbsp;
+                            In winkelmandje
+                        </a>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td>
+                            @Html.ActionLink("Wijzig", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Verwijder", "Delete", new { id = item.Id })
+                        </td>
+                    }
+
+                </div>
+            </div>
+            <br />
+        </div>
+        count++;
+    }
+</div>
+</div>
+<br />
+<p>
+    @Html.ActionLink("Terug naar lijst", "Index")
+</p>

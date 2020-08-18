@@ -1,0 +1,48 @@
+﻿@model Webshop.UI_MVC.Models.Webshop.Invoice
+
+@{
+    ViewBag.Title = "Verwijderen";
+}
+
+    <h2>Verwijderen</h2>
+
+    <h3>Wilt u deze factuur zeker verwijderen?</h3>
+<div>
+    <h4>Factuur</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Datum")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Betaald?")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPaid)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Factuur Code")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceCode)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Verwijder" class="btn btn-default" /> |
+            @Html.ActionLink("Terug naar lijst", "Index")
+        </div>
+    }
+</div>

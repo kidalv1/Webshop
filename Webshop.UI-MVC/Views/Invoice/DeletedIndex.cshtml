@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Webshop.UI_MVC.Models.Webshop.Invoice>
+
+@{
+    ViewBag.Title = "deletedIndex";
+}
+
+<h2>Verwijderde klanten</h2>
+@using (Html.BeginForm())
+{
+    <p>
+        Zoek op klantnaam: @Html.TextBox("search", null, new
+                           {
+                               @class = "form-control", style = "display:initial;"
+                           })
+        <input class="btn" type="submit" value="Zoek"/>
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Datum")
+        </th>
+        <th>
+            @Html.DisplayName("Factuur Code")
+        </th>
+        <th>
+            @Html.DisplayName("Betaald?")
+        </th>
+        <th>
+            @Html.DisplayName("Klant Naam")
+        </th>
+        <th>
+            @Html.DisplayName("Verwijderd?")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsPaid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deleted)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new {id = item.Id})
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("Terug naar lijst", "Index")
+</div>

@@ -1,0 +1,32 @@
+﻿@model Webshop.UI_MVC.Models.Webshop.InvoiceDetail
+
+@{
+    ViewBag.Title = "Verwijderen";
+}
+
+    <h2>Verwijderen</h2>
+
+    <h3>Wil je dit zeker verwijderen?</h3>
+<div>
+    <h4>Factuur Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Aantal")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pieces)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Verwijder" class="btn btn-default" /> |
+            @Html.ActionLink("Terug naar lijst", "Index")
+        </div>
+    }
+</div>

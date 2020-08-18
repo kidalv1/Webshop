@@ -1,0 +1,13 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+@{
+    ViewBag.Title = "Maak nieuwe rol";
+}
+<h2>Nieuwe gebruikersrol toevoegen:</h2>
+
+@using (Html.BeginForm())
+{
+    <p>Voer nieuwe rol in:</p>
+
+    @Html.EditorFor(m => m.Name)
+    <input type="submit" value="Creëer Rol" />
+}

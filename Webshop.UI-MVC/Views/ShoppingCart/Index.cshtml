@@ -1,0 +1,125 @@
+﻿@using Microsoft.Ajax.Utilities
+@using Webshop.UI_MVC.Models.Webshop
+@model IEnumerable<Webshop.UI_MVC.Models.Webshop.ShoppingCart>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h3><img src="../../shopping-cart(1).svg" width="25" height="25"/> &nbsp;Winkelmandje</h3>
+
+
+<div class="table-responsive">
+    <table class="table">
+        @if (Session["cart"] == null)
+        {
+            <tr>
+                <td colspan="10">Geen items in winkelmandje</td>
+            </tr>
+        }
+        else
+        {
+            <thead class="thead-dark">
+            <tr>
+                <th data-defaultsign="_19">
+                    Item
+                </th>
+                <th data-defaultsign="_19">
+                    Aantal
+                </th>
+                <th data-defaultsign="_19">
+                    Prijs
+                </th>
+                <th>
+                    Verwijderen
+                </th>
+            </tr>
+            </thead>
+
+            foreach (ShoppingCart item in (List<ShoppingCart>) Session["cart"])
+            {
+            <tr>
+                @if (item.Product == null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Course.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)&nbsp;
+                        <a href="@Url.Action("Buy", new {id = item.Course.Id, getBool = false})">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </a> |
+                        <a href="@Url.Action("RemoveQuantity", new {id = item.Course.Id, getBool = false})">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </a>
+                    </td>
+                    <td>
+                        €@(item.Course.Price * item.Quantity)
+                    </td>
+                }
+                @if (item.Course == null)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)&nbsp;
+                        <a href="@Url.Action("Buy", new {id = item.Product.Id, getBool = true})">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </a> |
+                        <a href="@Url.Action("RemoveQuantity", new {id = item.Product.Id, getBool = true})">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </a>
+                    </td>
+                    <td>
+                        €@(item.Product.Price * item.Quantity)
+                    </td>
+                }
+
+
+                @if (item.Product == null)
+                {
+                    <td>
+                        <a href="@Url.Action("Remove", "ShoppingCart", new {id = item.Course.Id, getBool = false})">
+                            <img src="../../trash-alt-solid.svg" width="15" height="15" />
+                        </a>
+                    </td>
+                }
+                @if (item.Course == null)
+                {
+                    <td>
+                        <a href="@Url.Action("Remove", "ShoppingCart", new {id = item.Product.Id, getBool = true})">
+                            <img src="../../trash-alt-solid.svg" width="15" height="15" />
+                        </a>
+                    </td>
+                }
+            </tr>
+            }
+            <div>
+                <h4>
+                    @{
+                        List<ShoppingCart> cart = (List<ShoppingCart>) Session["cart"];
+                        var total = cart.Where(item => item.Course != null).Sum(item => item.Course.Price * item.Quantity);
+                        var total2 = cart.Where(item => item.Product != null).Sum(item => item.Product.Price * item.Quantity);
+                        var total3 = total + total2;
+                    }
+
+                    <div>
+                        <strong style="text-decoration: underline">Totaal</strong>
+                    </div>
+                    <h5>
+                        <strong>Prijs : @total3</strong>
+                    </h5>
+
+                </h4>
+
+            </div>
+        }
+    </table>
+    @if (Session["cart"] != null)
+    {
+        <a href="@Url.Action("Index", "Purchase")" class="btn btn-primary">
+            Bestelling plaatsen
+        </a>
+    }
+
+</div>

@@ -1,0 +1,86 @@
+
+@using PagedList.Mvc
+@model PagedList.IPagedList<Webshop.UI_MVC.Models.Webshop.Product>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+@{
+    ViewBag.Title = "Producten";
+    var count = 0;
+}
+
+
+@using (Html.BeginForm())
+{
+    <p>
+        <div class="object">
+            <h2 class="objectTitle">Kies een opleiding</h2>
+            <div class="objectInput">
+                @Html.TextBox("SearchString")
+                <button title="Zoeken" input="submit" style="background-color: transparent; border: none"><img src="../../magnifying-glass.svg" width="20" height="20" /></button>
+            </div>
+        </div>
+    </p>
+
+}
+@if (User.IsInRole("Admin"))
+{
+    @Html.ActionLink("Maak nieuwe product", "Create", "Product")
+}
+<div class="card-deck">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            var insertRow = count != 0 && count % 6 == 0;
+            if (insertRow)
+            {
+            @:</div>
+            @:<div class="row">
+            }
+
+            <div class="col-md-4">
+                <div class="card" width="350" height="200">
+                    <img src="https://techmeetups.com/wp-content/uploads/2017/03/learn-to-code-3.png" class="card-img-top" alt="corgi" width="350" height="200">
+                    <div class="card-body">
+                        <div>
+                            <h5 style="font-weight: bold">@Html.DisplayFor(modelItem => item.Name)</h5>
+                            <p class="card-text"><small>Aantal dagen : @Html.DisplayFor(modelItem => item.Duration)</small></p>
+                            <p class="card-text"><small>Startdatum: @Html.DisplayFor(modelItem => item.StartDate)</small></p>
+                            <p class="card-text"><small>Einddatum: @Html.DisplayFor(modelItem => item.EndDate)</small></p>
+                            @Html.ActionLink("Wat zit in deze opleiding", "Details", new { id = item.Id },null)
+                            <p class="card-subtitle mb-2 text-muted" align="right">Prijs : @Html.DisplayFor(modelItem => item.Price) EUR</p>
+                           
+                        </div>
+
+                        @if (!User.IsInRole("Admin"))
+                        {
+                            <div align="center">
+                                <a href="@Url.Action("Buy", "ShoppingCart", new {id = item.Id, getBool = true})" class="btn btn-primary">
+                                    <img src="../../shopping-cart(1).svg" width="25" height="25" /> &nbsp;
+                                    In winkelmandje
+                                </a>
+                            </div>
+
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <td>
+                                @Html.ActionLink("Wijzig", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                @Html.ActionLink("Verwijder", "Delete", new { id = item.Id })
+                            </td>
+                        }
+
+                    </div>
+                </div>
+                <br />
+            </div>
+            count++;
+        }
+    </div>
+</div>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

@@ -1,0 +1,40 @@
+﻿@model Webshop.UI_MVC.Models.Webshop.Course
+
+@{
+    ViewBag.Title = "Verwijderen";
+}
+
+<h2>Verwijderen</h2>
+
+<h3>Wilt u deze cursus zeker verwijderen?</h3>
+<div>
+    <h4>Cursus</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Naam")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Prijs")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Verwijder" class="btn btn-default" /> |
+            @Html.ActionLink("Terug naar lijst", "Index")
+        </div>
+    }
+</div>
